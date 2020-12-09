@@ -1,0 +1,167 @@
+.container_authorization_form
+{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background: radial-gradient(rgba(145,145,145,0.5), rgba(4,4,4));
+}
+.container_authorization_form form
+{
+	color: #b7b2b2;
+	font-size: 20px;
+	border-radius: 5px;
+	text-align: left;
+	width: 350px;
+	height: fit-content;
+	margin: auto;
+	padding: 10px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/*background: #000000e8;*/
+	background: #292828e6;
+}
+.container_authorization_form input
+{
+	text-align: left;
+}
+button[type=submit], input[type=button]
+{
+	font-size: 16px;
+	text-align: center;
+	margin: 1px;
+	height: 25px;
+	width: 49%;
+	display: inline-block;
+	/*background: #328dcd;*/
+	background: #171616;
+	/*border: 2px solid #000000e8;*/
+	border: none;
+	font-weight: bold;
+	/*color: black;*/
+	color: #b7b2b2;
+}
+button[type=submit]:hover, input[type=button]:hover
+{
+	/*
+	background: orange;
+	color: black;
+	*/
+	background: black;
+	color: white;
+}
+input[type=text], input[type=password]
+{
+	box-sizing: border-box;
+	height: 25px;
+	margin: 5px 0px;
+	display: inline-block;	
+	width: 100%;
+}
+/*
+input[type=button]
+{
+	height: 25px;
+	margin: 10px 0px;
+	border: 2px solid black;
+	background: white;
+	color: black;
+	font-weight: bold;
+}
+input[type=button]:hover
+{
+	background: black;
+	color: white;
+}
+*/
+.container_authorization_form form div
+{
+	font-weight: bold;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+}
+.left_area
+{
+	text-align: left;
+	position: fixed;
+	background: gray;
+	top: 40px;
+	left: 0;
+	height: 100%;
+	width: 20%;
+	padding: 0;
+	margin: 0;
+}
+.left_area form
+{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+.left_area button
+{
+	width: 250px;
+	margin: 10px;
+	border: none;
+	background: white;
+	color: black;
+	height: 25px; 
+}
+.left_area button:hover
+{
+	background: black;
+	color: white;
+}
+.user_info
+{
+	position: fixed;
+	background: white;
+	top: 40px;
+	left: 20%;
+	width: 75%;
+	padding: 10px;
+	margin: 0;
+}
+div .container
+{
+	border: 2px solid black;
+	border-bottom: none;
+	padding: 5px;
+	background: lightgray;
+}
+div .container:last-child
+{
+	border-bottom: 2px solid black;
+}
+div .container div
+{
+	border: 1px solid gray;
+	background: white;
+}
+div .invisible_form
+{
+	color: #b7b2b2;
+	font-size: 20px;
+	border-radius: 5px;
+	text-align: left;
+	width: 350px;
+	height: fit-content;
+	margin: auto;
+	padding: 10px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/*background: #000000e8;*/
+	background: #292828e6;
+	display: none;
+}

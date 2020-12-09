@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <order_list>
-	<order state="5" id="00000000">
+	<order state="5" id="0">
 		<date>
 			09-09-2020 14:32
 		</date>
@@ -35,7 +35,7 @@
 			Всё работает, спасибо.
 		</comment>
 	</order>
-	<order state="4" id="00000001">
+	<order state="4" id="1">
 		<date>
 			09-09-2020 17:35
 		</date>
@@ -64,7 +64,7 @@
 			30000
 		</price>
 	</order>
-	<order state="3" id="00000002">
+	<order state="3" id="2">
 		<date>
 			09-09-2020 17:32
 		</date>
@@ -93,7 +93,7 @@
 			16000
 		</price>
 	</order>
-	<order state="2" id="00000003">
+	<order state="2" id="3">
 		<date>
 			10-09-2020 12:22
 		</date>
@@ -116,7 +116,7 @@
 			Не включается дальше запуска вентиляторов. Мертвая флешка БИОС. Подозрение на проблемный мультионтроллер. Просадки без нагрузки вторичных линий питания блока питания (5v до 4.1, 3.3v до 2.6).
 		</problems>
 	</order>
-	<order state="1" id="00000004">
+	<order state="1" id="4">
 		<date>
 			09-10-2020 12:45
 		</date>
@@ -133,7 +133,7 @@
 			Очень тусклая подсветка у ноутбука. Регулировка яркости не даёт нужного эффекта.
 		</text>
 	</order>
-	<order state="0" id="00000005">
+	<order state="0" id="5">
 		<date>
 			10-10-2020 17:32
 		</date>
@@ -150,7 +150,7 @@
 			Сломался ноутбук. Не включается.
 		</text>
 	</order>
-	<order state="6" id="00000006">
+	<order state="6" id="6">
 		<date>
 			11-10-2020 11:35
 		</date>
@@ -182,4 +182,6 @@
 			Дорого
 		</comment>
 	</order>
-</order_list>
+<order state="0" id="7"><date>06-12-2020 19:24</date><name>
+			Игорь Ечеистов
+		</name><number>89992663321</number><subject>Компьютер</subject><text>Выключается через 10-15 минут после включения.</text></order></order_list>
