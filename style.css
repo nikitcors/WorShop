@@ -3,6 +3,8 @@ body
 	margin: 0px;
 	padding: 0px;
 	background: black;
+	background-image: url(pic/background.jpg);
+	background-repeat: repeat; 
 }
 .head_area, .left_area, .right_area, .content_area
 {
@@ -62,8 +64,29 @@ body
 	right: 0;
 	top: 20%;
 }
+.left_area, .right_area
+{
+	background-image: url(pic/background.jpg);
+	background-repeat: repeat-y; 
+}
 .cl_post
 {
 	margin: 10px;
 	word-wrap: break-word;
+}
+div .container
+{
+	border: 2px solid black;
+	border-bottom: none;
+	padding: 5px;
+	background: lightgray;
+}
+div .container:last-child
+{
+	border-bottom: 2px solid black;
+}
+div .container div
+{
+	border: 1px solid gray;
+	background: white;
 }

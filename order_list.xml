@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order_list>
+	<order state="5" id="00000000">
+		<date>
+			09-09-2020 14:32
+		</date>
+		<name>
+			Игорь Ечеистов
+		</name>
+		<number>
+			89992663321
+		</number>
+		<subject>
+			Ноутбук HP OMEN 17.1
+		</subject>
+		<text>
+			Не ставятся драйвера на видеокарту. Ошибка 43.
+		</text>
+		<description>
+			Ноутбук: Процессор i7 - 10750H, Оперативная память - 8х2 3200Mhz, Видеокарта - Nvidia RTX 2060, Блок питания - HP 180watt, SSD - 512GB M.2 PCIE, Корпус без дефектов.
+		</description>
+		<problems>
+			Выход из строя графического процессора.
+		</problems>
+		<repairs>
+			Замена графического процессора. 
+		</repairs>
+		<price>
+			30000
+		</price>
+		<offdate>
+			09-09-2020 11:12
+		</offdate>
+		<comment>
+			Всё работает, спасибо.
+		</comment>
+	</order>
+	<order state="4" id="00000001">
+		<date>
+			09-09-2020 17:35
+		</date>
+		<name>
+			DarkFalos
+		</name>
+		<number>
+			89996661488
+		</number>
+		<subject>
+			Ноутбук Acer Aspire 3
+		</subject>
+		<text>
+			Сломался ноутбук. Не включается.
+		</text>
+		<description>
+			Ноутбук: Процессор i5 - 1067G, Оперативная память - 8x1 DDR4, Видеокарта - Nvidia MX350, Блок питания - Acer 120watt, SDD - A-DATA SU 650 120gb 2.5', Корпус без дефектов.
+		</description>
+		<problems>
+			Не выключается после залития. Коррозия элементов. Многочисленные короткие замыкания на материнской плате и платах расширения.
+		</problems>
+		<repairs>
+			Устранение коррозии элементов платы, востановление фаз питания процессора, замена процесса. 
+		</repairs>
+		<price>
+			30000
+		</price>
+	</order>
+	<order state="3" id="00000002">
+		<date>
+			09-09-2020 17:32
+		</date>
+		<name>
+			Сартарион
+		</name>
+		<number>
+			89996663321
+		</number>
+		<subject>
+			Ноутбук Lenovo Z580
+		</subject>
+		<text>
+			Сломался ноутбук. Не включается.
+		</text>
+		<description>
+			Ноутбук: Процессор i5 - 3520M, Оперативная память - 4x1 1600mhz, Оперативная память - 2x1 1600mhz, Видеокарта - Nvidia 820m, Блок питания - lenovo 90watt, SHDD - Seagate Barracuda 1TB 2.5', Корпус без дефектов.
+		</description>
+		<problems>
+			Не включается дальше запуска вентиляторов, работает 10 секунд и выключается. Нет питания на процессоре.
+		</problems>
+		<repairs>
+			Востановление фаз питания процессора, замена процесса (на i7 3612MQ по желанию владельца). 
+		</repairs>
+		<price>
+			16000
+		</price>
+	</order>
+	<order state="2" id="00000003">
+		<date>
+			10-09-2020 12:22
+		</date>
+		<name>
+			Нелтарион
+		</name>
+		<number>
+			89332311111
+		</number>
+		<subject>
+			Компьютер
+		</subject>
+		<text>
+			Не включается компьютер, крутятся вентиляторы, но изображения нет.
+		</text>
+		<description>
+			ПК: Материнская плата ASUS Z-170 P, Процессор i7 - 7700k, Оперативная память - 8x2 Kingston HyperX 3200mhz CL 16, Видеокарта - MSI ARMOR 1070 OC, Блок питания - Zalman LE2 600W, Охлаждение - Deepcool Gammax 300, SSD A-DATA SU650 240GB, HDD - Seagate Barracuda 1TB 3.5', Корпус n/i без дефектов.
+		</description>
+		<problems>
+			Не включается дальше запуска вентиляторов. Мертвая флешка БИОС. Подозрение на проблемный мультионтроллер. Просадки без нагрузки вторичных линий питания блока питания (5v до 4.1, 3.3v до 2.6).
+		</problems>
+	</order>
+	<order state="1" id="00000004">
+		<date>
+			09-10-2020 12:45
+		</date>
+		<name>
+			Джайна Праудмур
+		</name>
+		<number>
+			89996663344
+		</number>
+		<subject>
+			Ноутбук HP-Omen 
+		</subject>
+		<text>
+			Очень тусклая подсветка у ноутбука. Регулировка яркости не даёт нужного эффекта.
+		</text>
+	</order>
+	<order state="0" id="00000005">
+		<date>
+			10-10-2020 17:32
+		</date>
+		<name>
+			Артас Менетил
+		</name>
+		<number>
+			89506663321
+		</number>
+		<subject>
+			Ноутбук HP-bw15-ur
+		</subject>
+		<text>
+			Сломался ноутбук. Не включается.
+		</text>
+	</order>
+	<order state="6" id="00000006">
+		<date>
+			11-10-2020 11:35
+		</date>
+		<name>
+			Кирилл Горелый
+		</name>
+		<number>
+			89506661488
+		</number>
+		<subject>
+			Ноутбук Acer Aspire 3
+		</subject>
+		<text>
+			Не выключается после залития.
+		</text>
+		<description>
+			Ноутбук: Процессор i5 - 1067G, Оперативная память - 8x1 DDR4, Видеокарта - Nvidia MX350, Блок питания - Acer 120watt, SDD - A-DATA SU 650 120gb 2.5', Корпус без дефектов, Следы залития.
+		</description>
+		<problems>
+			Залитие ноутбука. Нет питания по 12V линии.
+		</problems>
+		<repairs>
+			Устранение коррозии элементов платы, востановление фаз питания процессора, замена процесса, замена графического процессора. 
+		</repairs>
+		<price>
+			30000
+		</price>
+		<comment>
+			Дорого
+		</comment>
+	</order>
+</order_list>
