@@ -90,3 +90,16 @@ div .container div
 	border: 1px solid gray;
 	background: white;
 }
+button
+{
+	height: 30px;
+    width: 90%;
+    background: black;
+    color: white;
+    font-size: 16px;
+}
+button:hover
+{
+	background: white;
+	color: black;
+}

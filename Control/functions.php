@@ -34,12 +34,12 @@ function GenerateHeader()
 	echo "<div class='head' align='center' valign='middle'>
 	Личный кабинет
 	<div style='position: absolute;top: 20%;''>
-		<a class='home' href='http://localhost/WarpWorkshop'>На главную</a>
+		<a class='home' href='http://localhost/WarpWorkshop/index.php'>На главную</a>
 	</div>
 	</div>";
 }
 function GenerateBody($xml_name)
-{	
+{
 	$Login = $_SESSION['login'] > $_POST['login'] ? $_SESSION['login']: $_POST['login'];
 	$Admission = trim(GetAdmission($_SESSION['login'] > $_POST['login'] ? $_SESSION['login']: $_POST['login']));
 	echo "<div class='left_area'>";
@@ -51,7 +51,7 @@ function GenerateBody($xml_name)
 			break;
 		case '1':
 			echo "<div>Администратор ".$_SESSION['nickname']."</div>";
-			echo "<input type='button' value='Просмотр заявок'>";
+			//echo "<input type='button' value='Просмотр заявок'>";
 			break;
 		default:
 			GenerateErrorAlert();
@@ -87,7 +87,7 @@ function GenerateAuthorizationArea($state)
 			echo "<input type='checkbox' name='remember'> Запомнить";
 			echo "<br>";
 			echo "<button type='submit'>Войти</button>";
-			echo "<input type='button' value='Отмена'>";
+			echo "<input type='button' value='Отмена' onclick='RedirectHome()'>";
 		echo "</form>";
 	echo "</div>";
 }
@@ -103,8 +103,6 @@ function Authorization($xml_name)
 		$_SESSION['xml_name'] = $xml_name;
 
 		$usercnt = count($xmlstruct->user);
-		//echo $xml_name;
-		//echo $usercnt;
 		//echo " ".$Login." ".gettype($Login)." ".$Password;
 		//echo $xmlstruct->list->user[2]->login;
 		for ($i=0; $i < $usercnt; $i++) 
@@ -119,8 +117,8 @@ function Authorization($xml_name)
 				break;	
 			}
 		}
-		
-		if ($admission) 
+		//echo $lgt." ".$pst." ".$admission;
+		if ($admission >= 0 ) 
 		{
 			if (isset($_POST['remember'])) 
 			{
@@ -183,13 +181,22 @@ function GetUserInfo($Login)
 function GenerateOrderList($admission,$Login)
 {
 	$statemass = array("Заявка оставлена","Заявка рассмотрена, производится связь с клиентом","Техника поступила в мастерскую","Произведена диагностика, ожидается решение клиента","Ремонт произведен и ожидает клиента","Заявка завершена", "Отказ от ремонта");
+	
+	switch ($admission) 
+	{
+		case '0':
+			GenerateForms();		
+			break;
+		case '1':
+			GenerateAdminForms();
+			break;
+	}
 	echo "<div class='user_info'>";
 	switch ($admission) 
 	{
 		case '0':
 			// генерировать в теле созданные заявки юзром
 			// кнопка создать заявку выдаёт форму подачи заявки на ремонт
-			GenerateForms();
 			$xmlstruct = simplexml_load_file('../order_list.xml');
 			$cnt = count($xmlstruct->order);
 			$userordercounter = 0;
@@ -209,39 +216,79 @@ function GenerateOrderList($admission,$Login)
 					case '0':
 					case '1':
 						echo "<div class='container'>";
-							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div><br>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
 							//echo "Описание на приёме:".$xmlstruct->order[$orderlist[$i]]->description."<br>";
-							echo "Техника:".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Техника: ".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
 							//echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
 						echo "</div>";
 						break;
 					case '2':
 						echo "<div class='container'>";
-							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div><br>";
-							echo "Техника:".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
-							echo "Описание на приёме:".$xmlstruct->order[$orderlist[$i]]->description."<br>";
-							echo "Диагностика:".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
-							echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
+							echo "Техника: ".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Диагностика: ".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
 						echo "</div>";
 						break;
 					case '3':
+						echo "<div class='container'>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
+							echo "Техника: ".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Диагностика: ".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
+							echo "Работы: ".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$orderlist[$i]]->price."<br>";
+						echo "</div>";
+						break;
 					case '4':
 						echo "<div class='container'>";
-							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div><br>";
-							echo "Техника:".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
-							echo "Описание на приёме:".$xmlstruct->order[$orderlist[$i]]->description."<br>";
-							echo "Диагностика:".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
-							echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
+							echo "Техника: ".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Диагностика: ".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
+							echo "Работы: ".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$orderlist[$i]]->price."<br>";
 						echo "</div>";
 						break;
 					case '5':
+						echo "<div class='container'>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
+							echo "Техника: ".$xmlstruct->order[$orderlist[$i]]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Диагностика: ".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
+							echo "Работы: ".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$orderlist[$i]]->price."<br>";
+							echo "Дата окончания ремонта: ".$xmlstruct->order[$orderlist[$i]]->offdate."<br>";
+							echo "Комментарий:<a id='cm-".$xmlstruct->order[$orderlist[$i]]['id']."'>".$xmlstruct->order[$orderlist[$i]]->comment."</a><br>";
+							echo "<input type='button' value='Комментарий' onclick='ToggleCommentForm(".$xmlstruct->order[$orderlist[$i]]['id'].")'>";
+						echo "</div>";
+						break;
 					case '6':
 						echo "<div class='container'>";
-							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div><br>";
-							echo "Описание на приёме:".$xmlstruct->order[$orderlist[$i]]->description."<br>";
-							echo "Диагностика:".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
-							echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
-							echo "Комментарий:".$xmlstruct->order[$orderlist[$i]]->comment."<br>";
+							echo "<div id='".$xmlstruct->order[$orderlist[$i]]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$orderlist[$i]]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$orderlist[$i]]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$orderlist[$i]]['id']."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$orderlist[$i]]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Диагностика: ".$xmlstruct->order[$orderlist[$i]]->problems."<br>";
+							echo "Работы: ".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$orderlist[$i]]->price."<br>";
+							echo "Комментарий:<a id='cm-".$xmlstruct->order[$orderlist[$i]]['id']."'>".$xmlstruct->order[$orderlist[$i]]->comment."</a><br>";
 							echo "<input type='button' value='Комментарий' onclick='ToggleCommentForm(".$xmlstruct->order[$orderlist[$i]]['id'].")'>";
 						echo "</div>";
 						break;
@@ -251,6 +298,139 @@ function GenerateOrderList($admission,$Login)
 		case '1':
 			// генерировать принятые конкретным мастером заявки
 			// кнопка "Просмотр заявок" показывает новые, необработанные заявки
+			$xmlstruct = simplexml_load_file('../order_list.xml');
+			$cnt = count($xmlstruct->order);
+			/*
+			$userordercounter = 0;
+			$orderlist = array();
+			for ($i=0; $i < $cnt; $i++) 
+			{ 
+				if (trim((string) $xmlstruct->order[$i]->number) == $Login) 
+				{
+					$orderlist[$userordercounter] = $i;
+					$userordercounter++;
+				}
+			}
+			*/
+			for ($i=$cnt; $i >= 0; $i--) 
+			{ 
+				switch ($xmlstruct->order[$i]['state']) 
+				{
+					case '0':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							//echo "Описание на приёме:".$xmlstruct->order[$orderlist[$i]]->description."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							//echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "<input type='button' value='Принять' onclick='ToggleActionForm(".$xmlstruct->order[$i]['id'].",".$xmlstruct->order[$i]['state'].")'>";
+							echo "<input type='button' value='Отказ' onclick='ToggleCancelForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '1':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							//echo "Работы:".$xmlstruct->order[$orderlist[$i]]->repairs."<br>";
+							echo "<input type='button' value='Продолжить' onclick='ToggleActionForm(".$xmlstruct->order[$i]['id'].",".$xmlstruct->order[$i]['state'].")'>";
+							echo "<input type='button' value='Отказ' onclick='ToggleCancelForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '2':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							echo "Описание на приёме: <a id='priem-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->description."</a><br>";
+							echo "Диагностика: <a id='diag-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->problems."</a><br>";
+							//echo "Работы: ".$xmlstruct->order[$i]->repairs."<br>";
+							echo "<input type='button' value='Продолжить' onclick='ToggleActionForm(".$xmlstruct->order[$i]['id'].",".$xmlstruct->order[$i]['state'].")'>";
+							echo "<input type='button' value='Отказ' onclick='ToggleCancelForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '3':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							echo "Описание на приёме: <a id='priem-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->description."</a><br>";
+							echo "Диагностика:  <a id='diag-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->problems."</a><br>";
+							echo "Работы: <a id='work-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->repairs."</a><br>";
+							echo "Цена: ".$xmlstruct->order[$i]->price."<br>";
+							echo "<input type='button' value='Продолжить' onclick='ToggleActionForm(".$xmlstruct->order[$i]['id'].",".$xmlstruct->order[$i]['state'].")'>";
+							echo "<input type='button' value='Отказ' onclick='ToggleCancelForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '4':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							echo "Описание на приёме:  <a id='priem-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->description."</a><br>";
+							echo "Диагностика:  <a id='diag-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->problems."</a><br>";
+							echo "Работы: ".$xmlstruct->order[$i]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$i]->price."<br>";
+							echo "<input type='button' value='Завершить' onclick='ToggleFinalForm(".$xmlstruct->order[$i]['id'].",".$xmlstruct->order[$i]['state'].")'>";
+							echo "<input type='button' value='Отказ' onclick='ToggleCancelForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '5':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Техника: ".$xmlstruct->order[$i]->subject."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$i]->description."<br>";
+							echo "Диагностика:  <a id='diag-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->problems."</a><br>";
+							echo "Работы: ".$xmlstruct->order[$i]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$i]->price."<br>";
+							echo "Дата окончания ремонта: ".$xmlstruct->order[$i]->offdate."<br>";
+							echo "Комментарий:<a id='cm-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->comment."</a><br>";
+							//echo "<input type='button' value='Править' onclick='ToggleEditForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+					case '6':
+						echo "<div class='container' id='t".$xmlstruct->order[$i]['state']."'>";
+							echo "<div id='ord".$xmlstruct->order[$i]['id']."'>Статус:".$statemass[(int) $xmlstruct->order[$i]['state']]."</div>";
+							echo "Дата: ".$xmlstruct->order[$i]->date."<br>";
+							echo "Номер заявки: ".$xmlstruct->order[$i]['id']."<br>";
+							echo "Никнейм клиента: ".$xmlstruct->order[$i]->name."<br>";
+							echo "Телефон клиента: ".$xmlstruct->order[$i]->number."<br>";
+							echo "Описание проблемы: ".$xmlstruct->order[$i]->text."<br>";
+							echo "Описание на приёме: ".$xmlstruct->order[$i]->description."<br>";
+							echo "Диагностика:  <a id='diag-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->problems."</a><br>";
+							echo "Работы: ".$xmlstruct->order[$i]->repairs."<br>";
+							echo "Цена: ".$xmlstruct->order[$i]->price."<br>";
+							echo "Комментарий:<a id='cm-".$xmlstruct->order[$i]['id']."'>".$xmlstruct->order[$i]->comment."</a><br>";
+							//echo "<input type='button' value='Продолжить' onclick='ToggleEditForm(".$xmlstruct->order[$i]['id'].")'>";
+						echo "</div>";
+						break;
+				}
+			}
 			break;
 	}
 	echo "</div>";

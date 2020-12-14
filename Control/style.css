@@ -122,13 +122,14 @@ input[type=button]:hover
 }
 .user_info
 {
-	position: fixed;
+	position: absolute;
 	background: white;
 	top: 40px;
 	left: 20%;
 	width: 75%;
 	padding: 10px;
 	margin: 0;
+	overflow: auto;
 }
 div .container
 {
@@ -164,4 +165,84 @@ div .invisible_form
 	/*background: #000000e8;*/
 	background: #292828e6;
 	display: none;
+}
+div .container input
+{
+	font-size: 16px;
+	text-align: center;
+	margin: 1px;
+	height: 25px;
+	width: auto!important;
+	display: inline-block;
+	/*background: #328dcd;*/
+	background: #171616;
+	/*border: 2px solid #000000e8;*/
+	border: none;
+	font-weight: bold;
+	/*color: black;*/
+	color: #b7b2b2;
+}
+div #order_number
+{
+	display: inline;
+}
+.invisible_form
+{
+	background: black;
+    display: none;
+    color: #b7b2b2;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    height: fit-content;
+    margin: auto;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.invisible_container
+{
+	display: none;
+	z-index: 999;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(rgba(145,145,145,0.5), rgba(4,4,4));
+}
+.head
+{
+	z-index: 999;
+}
+div#t0
+{
+	background: #f8ff84!important;
+}
+div#t1, div#t2, div#t3, div#t4
+{
+	background: skyblue;
+}
+div#t5
+{
+	background: #2ef90a9c!important;
+}
+div#t6
+{
+	background: #ff003b5e!important;
+}
+div #e1pr, #e1d, #e2r, #e2p
+{
+	display: none;
+}
+div #ActionForm_number, #CancelForm_number ,#FinalForm_number
+{
+	display: inline;
 }

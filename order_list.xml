@@ -31,9 +31,7 @@
 		<offdate>
 			09-09-2020 11:12
 		</offdate>
-		<comment>
-			Всё работает, спасибо.
-		</comment>
+		<comment>Норм</comment>
 	</order>
 	<order state="4" id="1">
 		<date>
@@ -64,7 +62,7 @@
 			30000
 		</price>
 	</order>
-	<order state="3" id="2">
+	<order state="5" id="2">
 		<date>
 			09-09-2020 17:32
 		</date>
@@ -92,7 +90,7 @@
 		<price>
 			16000
 		</price>
-	</order>
+	<offdate>12-12-2020 17:11</offdate><comment> </comment></order>
 	<order state="2" id="3">
 		<date>
 			10-09-2020 12:22
@@ -116,7 +114,7 @@
 			Не включается дальше запуска вентиляторов. Мертвая флешка БИОС. Подозрение на проблемный мультионтроллер. Просадки без нагрузки вторичных линий питания блока питания (5v до 4.1, 3.3v до 2.6).
 		</problems>
 	</order>
-	<order state="1" id="4">
+	<order state="2" id="4">
 		<date>
 			09-10-2020 12:45
 		</date>
@@ -132,7 +130,7 @@
 		<text>
 			Очень тусклая подсветка у ноутбука. Регулировка яркости не даёт нужного эффекта.
 		</text>
-	</order>
+	<description>17.3" Ноутбук HP OMEN 17-an145ur черный</description><problems>Предположительно вышел из строя контроллер подсветки матрицы</problems></order>
 	<order state="0" id="5">
 		<date>
 			10-10-2020 17:32
@@ -182,6 +180,6 @@
 			Дорого
 		</comment>
 	</order>
-<order state="0" id="7"><date>06-12-2020 19:24</date><name>
+<order state="6" id="7"><date>06-12-2020 19:24</date><name>
 			Игорь Ечеистов
-		</name><number>89992663321</number><subject>Компьютер</subject><text>Выключается через 10-15 минут после включения.</text></order></order_list>
+		</name><number>89992663321</number><subject>Компьютер</subject><text>Выключается через 10-15 минут после включения.</text><comment> </comment></order><order state="1" id="8"><date>11-12-2020 15:59</date><name>Никита Корсунский</name><number>88888888800</number><subject>Ноутбук HP</subject><text>Не работает</text></order><order state="1" id="9"><date>11-12-2020 15:59</date><name>Никита Корсунский</name><number>88888888800</number><subject>Телевизор</subject><text>Не реагирует на пульт</text></order></order_list>

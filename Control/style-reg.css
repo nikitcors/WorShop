@@ -1,0 +1,37 @@
+.rinfo
+{
+	font-size: 14px;
+    color: limegreen;
+}
+.errinfo
+{
+	font-size: 16px;
+    color: red;
+}
+.accept_info
+{
+	color: limegreen;
+	font-size: 18px;
+}
+.lp
+{
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+}
+.lk_link
+{
+	font-size: 18px;
+    text-align: center;
+    margin: 1px;
+    height: 20px;
+    display: inline-block;
+    border: none;
+    font-weight: bold;
+    color: orange;
+    text-decoration: none;
+}
+.lk_link:hover
+{
+	color: red;
+}
